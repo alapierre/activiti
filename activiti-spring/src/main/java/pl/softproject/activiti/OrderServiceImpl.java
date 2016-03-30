@@ -3,18 +3,17 @@
  */
 package pl.softproject.activiti;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import pl.softproject.activiti.dao.OrderDAO;
 import pl.softproject.activiti.model.Order;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  * @author Adrian Lapierre {@literal <adrian@soft-project.pl>}
  */
 public class OrderServiceImpl {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Autowired
+    private OrderDAO orderDAO;
 
     public Order create() {
 
@@ -24,7 +23,7 @@ public class OrderServiceImpl {
 
         order.setName("ala ma kota");
 
-        entityManager.persist(order);
+        orderDAO.save(order);
 
         return order;
     }
