@@ -1,11 +1,7 @@
 /**
- * Copyright 2016-03-29 the original author or authors.
+ * Copyright 2016-03-30 the original author or authors.
  */
 package pl.softproject.activiti;
-
-/**
- * @author Adrian Lapierre {@literal <adrian@soft-project.pl>}
- */
 
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -16,12 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Adrian Lapierre {@literal <adrian@soft-project.pl>}
+ */
+
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/activiti-spring.xml")
-public class SpringTest {
+@ContextConfiguration("/jpa-context.xml")
+public class JPATest {
 
     @Autowired
     private RuntimeService runtimeService;
@@ -29,22 +28,18 @@ public class SpringTest {
     @Autowired
     private TaskService taskService;
 
-    private ProcessInstance startProcessInstance() {
-
-        //identityService.setAuthenticatedUserId("John Doe");
-
-        Map<String, Object> vars = new HashMap<>();
-        vars.put("isbn", "123445555");
-
-        return runtimeService.startProcessInstanceByKey("helloWorld", vars);
-
-    }
-
     @Test
     public void test() {
+        System.out.println("!!");
 
-        startProcessInstance();
+        ProcessInstance process = runtimeService.startProcessInstanceByKey("myProcess_1");
+
+        Map<String, Object> vars = runtimeService.getVariables(process.getId());
+
+        System.out.println(vars);
 
     }
+
 }
+
 
