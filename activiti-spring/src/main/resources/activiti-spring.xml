@@ -25,7 +25,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="transactionManager" ref="transactionManager" />
         <property name="databaseSchemaUpdate" value="true" />
-        <property name="deploymentResources" value="classpath*:workflow-variables.bpmn" />
+        <property name="deploymentResources" value="classpath*:*.bpmn" />
         <property name="jobExecutorActivate" value="false" />
     </bean>
 
