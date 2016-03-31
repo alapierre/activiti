@@ -11,12 +11,15 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import pl.softproject.activiti.dao.OrderDAO;
 
 import java.util.Map;
 
 /**
  * @author Adrian Lapierre {@literal <adrian@soft-project.pl>}
  */
+
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("/spring-data-context.xml")
@@ -27,6 +30,16 @@ public class SpringDataTest {
 
     @Autowired
     private TaskService taskService;
+
+    @Autowired
+    private OrderDAO orderDAO;
+
+    @Test
+    public void testDAO() {
+
+        orderDAO.findByNameLike("ala ma kota");
+
+    }
 
     @Test
     public void test() {
